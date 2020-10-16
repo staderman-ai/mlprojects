@@ -1,0 +1,48 @@
+{"training_data": [
+        {"tag": "hello",
+         "patterns": ["Hi there", "How are you", "Hi","Hey","How's it going", "Hello", "Good day"],
+         "responses": ["Hello there", "Hello hope all is well with you", "Good to see you again", "Hey going good. How are you ?", "Hi there, how can I help?"],
+         "context": [""]
+        },
+        {"tag": "goodbye",
+         "patterns": ["Bye", "bfn", "See you later", "Goodbye", "Nice chatting with you, bye", "Till next time"],
+         "responses": ["See you!", "Have a nice day", "Bye! Come back again soon.", "Hey nice talking to you"],
+         "context": [""]
+        },
+        {"tag": "thanks",
+         "patterns": ["Thanks", "Thank you", "Great", "Cool", "Awesome, thanks", "Thanks for helping me"],
+         "responses": ["Happy to help!", "That's what I'm here for", "Thanks for stopping by", "Any time!", "My pleasure"],
+         "context": [""]
+        },
+        {"tag": "none",
+         "patterns": [],
+         "responses": ["Sorry, cannot understand you", "Please rephrase your query ", "Please give me more info", "Not sure I understand"],
+         "context": [""]
+        },
+        {"tag": "location",
+         "patterns": ["Where are  you currently selling?", "Do you have projects in the city", "Are you selling anything outside the city", "Do you have apartments in Kothrud?", "Do you sell plots close to the city centre?" ],
+         "responses": ["Taking you to the location module"],
+         "context": [""]
+        },
+        {"tag": "amenities",
+         "patterns": ["What are the amenities you are providing ?", "Amenities?", "What quality amenities are you giving", "I want top quality amenities", "What are the security measures you are providing in your project" ],
+         "responses": ["Taking you to the list of amenities provided"],
+         "context": [""]
+        },
+        {"tag": "cost",
+         "patterns": ["What is the rate?", "What is the loading?", "What is total package", "Any discounts", "Total cost" ],
+         "responses": ["Rate is 9000 at 35 percent loading", "Costs will be reasonable and within budget"],
+         "context": ["search_rate"]
+        },
+        {"tag": "plans",
+         "patterns": ["Do you have 2bhk", "Do you have 3 bhk", "Would like to see the plans", "How many floors", "Would like to see the elevations" ],
+         "responses": ["Will email you the plans", "The architectural plans are very nice you'll like them"],
+         "context": ["search_plans"]
+        },
+        {"tag": "duration",
+         "patterns": ["When is expected completion", "When will the work start", "How long will it take till handover","Has the work begun yet" ],
+         "responses": ["The project will be completed within 18 months after work begins", "end of 2022"],
+         "context": ["search_duration"]
+        }
+   ]
+}
