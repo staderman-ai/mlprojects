@@ -1,5 +1,5 @@
 # mlprojects
-Machine Learning Projects
+Machine Learning Projects -
 
 These are some of the projects I have created. They give the reader a quick overview of my interests in machine learning. 
 
