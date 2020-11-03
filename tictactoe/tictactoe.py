@@ -10,8 +10,6 @@ TRAINING_RUNS = 10000
 
 
 
-
-
 class Board():
     
     def __init__(self):
@@ -85,6 +83,7 @@ class Board():
     
     def draw_board(self):
         current_board = self.square
+        current_board = np.where(self.square==0 , '*' , current_board)
         current_board = np.where(self.square==-1 , 'x' , current_board)
         current_board = np.where(self.square==1 , 'o' , current_board)
         print(f"{current_board}")
@@ -97,7 +96,30 @@ class Board():
     def reset_single_square(self, i, j):
         self.square[i,j] = 0 
 
+    #accept move from player and parse it.
+    def grab_move_entered(self, inputstring):
+        
+        numintsgrabbed = 0
+        for element in inputstring:
+            if (element.isdigit() and numintsgrabbed == 0):
+                i = element
+                numintsgrabbed += 1
+            elif (element.isdigit() and numintsgrabbed == 1):
+                j = element
+                return self.check_valid_move(i, j), i, j
+        return 0, 0, 0
+    
+    #check if player has made a valid move    
+    def check_valid_move(self, i, j):
 
+        if int(i) not in [0,1,2] or int(j) not in [0,1,2]:
+            print('That was not a valid move.\n')
+            return 0
+        if self.square[int(i),int(j)] != 0:
+            print('That move was already made.\n')
+            return 0
+        return 1
+        
 
 
 
@@ -114,8 +136,11 @@ class Agent():
         
         
     def make_move(self, opponent, board):
+        validmove = 0
         if self.auto == False:
-            i,j = input("Enter your move: row (0,1,2) col (0,1,2):").split()
+            while validmove == 0:
+                inputstring = input("Enter your move: row (0-2) col (0-2):")  
+                validmove, i, j = board.grab_move_entered(inputstring)
             board.make_move(self.player_num, int(i), int(j))
             self.current_game.append((int(i), int(j)))
             opponent.current_game.append((int(i), int(j)))
@@ -201,13 +226,10 @@ class Agent():
         
 
 
-
-
-
-
 def train(b, p1, p2):
    
-   print("Agent plays itself and learns how to play the game so you just can't beat it :) ")
+   print("Hi I use reinforcement learning to play tictactoe so you just can't beat me :) ")
+   print("First let me play 10000 games against myself and use RL to learn the game:\n")
    for i in range(TRAINING_RUNS):
        if(i%500 == 0): print(i) 
        while True:
@@ -216,11 +238,11 @@ def train(b, p1, p2):
            if(b.check_win_draw() == b.x):
                p1.result = 1
                p2.result = 0
-               #print('x wins !!')
+               #print('I win !!')
                break
            elif (b.check_win_draw() == 0.5): 
                # last move will always be made by player 1 in a drawn game
-               #print('Its a draw !!')
+               #print('Its a draw !! You're pretty good.')
                break
 
            p2.make_move(p1, b)
@@ -228,7 +250,7 @@ def train(b, p1, p2):
            if(b.check_win_draw() == b.o):
                p1.result = 0
                p2.result = 1
-               #print('o wins !!')
+               #print('You win !!')
                break
            
        p1.update_game_state_values(p2, b)
@@ -253,11 +275,11 @@ def play_game(b, p1):
                if(b.check_win_draw() == b.x):
                    p1.result = 1
                    p3.result = 0
-                   print('x wins !!')
+                   print('I win !! Brush up your game buddy.')
                    break
                elif (b.check_win_draw() == 0.5): 
                    # last move will always be made by player 1 in a drawn game
-                   print('Its a draw !!')
+                   print('Its a draw !! You are pretty good.')
                    break
 
                p3.make_move(p1, b)
@@ -265,7 +287,7 @@ def play_game(b, p1):
                if(b.check_win_draw() == b.o):
                    p1.result = 0
                    p3.result = 1
-                   print('o wins !!')
+                   print('You win !! Whatta playa.')
                    break
                    
        elif play == 'n':
