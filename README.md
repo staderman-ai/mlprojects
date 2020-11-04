@@ -1,7 +1,7 @@
 # mlprojects
 Machine Learning Projects -
 
-These are some of the projects I have created. They give the reader a quick overview of my interests in machine learning. 
+These are some of the projects I have created. They give the reader an overview of my interests in machine learning. 
 
 A quick description of the same:
 
